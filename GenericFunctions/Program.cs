@@ -21,7 +21,7 @@ namespace GenericFunctions
 
                 try
                 {
-                    x = Convert.ToInt64(x);
+                    x = Convert.ToDouble(x);
                 }
                 catch (Exception)
                 {
