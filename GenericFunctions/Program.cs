@@ -24,6 +24,31 @@ namespace GenericFunctions
         {
             return x + y;
         }
+        static dynamic MathMin(dynamic x, dynamic y)
+        {
+            if (x.GetType() == typeof(double))
+            {
+                if (x < y)
+                    return x;
+                return y;
+            }
+            else
+            {
+                int XSum = 0, YSum = 0;
+
+                for (int i = 0; i < x.Length; i++)
+                {
+                    XSum += (char)x[i];
+                }
+                for (int i = 0; i < y.Length; i++)
+                {
+                    YSum += (char)y[i];
+                }
+                if (XSum < YSum)
+                    return x;
+                return y;
+            }
+        }
         static void Main(string[] args)
         {
             dynamic x, y;
@@ -31,7 +56,9 @@ namespace GenericFunctions
 
             y = InputLine();
 
-            Console.WriteLine($"{x} + {y} = {genericFunction(x, y)}");
+            Console.WriteLine($"{x} {x.GetType()} + {y} {y.GetType()} = {genericFunction(x, y)}");
+
+            Console.WriteLine("The smoller varialbe is {0}", MathMin(x, y));
         }
     }
 }
