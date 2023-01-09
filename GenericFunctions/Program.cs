@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace GenericFunctions
 {
@@ -16,7 +15,7 @@ namespace GenericFunctions
             {
                 x = Convert.ToDouble(x);
             }
-            catch (FormatException e) {};
+            catch (FormatException e) { };
 
             return x;
         }
@@ -34,18 +33,66 @@ namespace GenericFunctions
             }
             else
             {
-                int XSum = 0, YSum = 0;
-
-                for (int i = 0; i < x.Length; i++)
-                {
-                    XSum += (char)x[i];
-                }
-                for (int i = 0; i < y.Length; i++)
-                {
-                    YSum += (char)y[i];
-                }
-                if (XSum < YSum)
+                if (x.Length < y.Length)
                     return x;
+
+                else if (x.Length == y.Length)
+                {
+                    bool[] AllLetters = new bool[2];
+
+                    int Length;
+
+                    string TemporaryString;
+
+                    for (int h = 0; h < 2; h++)
+                    {
+                        if (h == 0)
+                        {
+                            Length = x.Length;
+                            TemporaryString = x;
+                        }
+                        else
+                        {
+                            Length = y.Length;
+                            TemporaryString = y;
+                        }
+
+                        for (int k = 0; k < Length; k++)
+                        {
+                            if (TemporaryString[k] >= 'A' && TemporaryString[k] <= 'Z' || TemporaryString[k] >= 'a' && TemporaryString[k] <= 'z')
+                                AllLetters[h] = true;
+                            else
+                                AllLetters[h] = false;
+                        }
+                    }
+                    if (AllLetters[0] && AllLetters[1])
+                    {
+                        int[] Sum = new int[2];
+
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (j == 0)
+                            {
+                                Length = x.Length;
+                                TemporaryString = x;
+                            }
+                            else
+                            {
+                                Length = y.Length;
+                                TemporaryString = y;
+                            }
+
+                            for (int i = 0; i < Length; i++)
+                            {
+                                Sum[j] += (char)TemporaryString[i];
+                            }
+                        }
+                        if (Sum[0] < Sum[1])
+                            return x;
+
+                        return y;
+                    }
+                }
                 return y;
             }
         }
@@ -58,7 +105,7 @@ namespace GenericFunctions
 
             Console.WriteLine($"{x} {x.GetType()} + {y} {y.GetType()} = {genericFunction(x, y)}");
 
-            Console.WriteLine("The smoller varialbe is {0}", MathMin(x, y));
+            Console.WriteLine("The smoller varialbe is {0}\n", MathMin(x, y));
         }
     }
 }
