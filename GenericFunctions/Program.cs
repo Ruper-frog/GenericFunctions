@@ -16,10 +16,7 @@ namespace GenericFunctions
             {
                 x = Convert.ToDouble(x);
             }
-            catch (FormatException e)
-            {
-                return x;
-            }
+            catch (FormatException e) {};
 
             return x;
         }
