@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace GenericFunctions
 {
@@ -14,27 +10,17 @@ namespace GenericFunctions
             dynamic x = null;
 
             Console.WriteLine("pls enter the variable value");
+            x = Console.ReadLine();
 
             try
             {
-                x = Console.ReadLine();
-
-                try
-                {
-                    x = Convert.ToDouble(x);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                x = Convert.ToDouble(x);
             }
             catch (FormatException e)
             {
+                return x;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
             return x;
         }
         static dynamic genericFunction(dynamic x, dynamic y)
