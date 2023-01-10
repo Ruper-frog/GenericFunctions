@@ -105,7 +105,7 @@ namespace GenericFunctions
 
             Console.WriteLine($"{x} {x.GetType()} + {y} {y.GetType()} = {genericFunction(x, y)}");
 
-            Console.WriteLine("The smoller varialbe is {0}\n", MathMin(x, y));
+            Console.WriteLine("The smaller varialbe is {0}\n", MathMin(x, y));
         }
     }
 }
